@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+// SAVE DATABASE URL IN .ENV as DATABASE_URL 
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model school {
+  id       Int    @id @default(autoincrement())
+  name     String @db.Text
+  address  String @db.Text
+  city     String @db.Text
+  state    String @db.Text 
+  contact  String @unique(map: "contact_UNIQUE") @db.VarChar(12)
+  image    String @db.Text
+  email_id String @unique(map: "email_id_UNIQUE") @db.VarChar(200)
+}
